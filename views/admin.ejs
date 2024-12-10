@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Trị</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .links {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            border-top: 2px solid #f0f4f8;
+            padding-top: 20px;
+        }
+        .links a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .links a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .links a:active {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        Trang Quản Trị
+    </header>
+
+    <div class="container">
+
+        <!-- Liên kết chức năng -->
+        <div class="links">
+            <a href="/showhospital">QUẢN LÝ BỆNH VIỆN</a>
+            <a href="/showuser">QUẢN LÝ NGƯỜI DÙNG</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

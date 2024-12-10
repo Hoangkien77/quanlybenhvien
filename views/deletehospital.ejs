@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh sách bệnh viện</title>
+</head>
+<body>
+  <h1>Danh sách bệnh viện</h1>
+  <table border="1" cellpadding="10">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên bệnh viện</th>
+        <th>Địa chỉ</th>
+        <th>Kinh độ</th>
+        <th>Vĩ độ</th>
+        <th>Số giường</th>
+        <th>Giờ làm việc</th>
+        <th>Trạng thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% hospitals.forEach(hospital => { %>
+        <tr>
+          <td><%= hospital.hospital_id %></td>
+          <td><%= hospital.hospital_name %></td>
+          <td><%= hospital.address %></td>
+          <td><%= hospital.longitude %></td>
+          <td><%= hospital.latitude %></td>
+          <td><%= hospital.bed_number %></td>
+          <td><%= hospital.working_hours %></td>
+          <td><%= hospital.status %></td>
+          <td><a href="/deletehospital">delete</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Người Dùng - Bệnh Viện</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eef2f7; /* Màu nền nhẹ nhàng, dễ nhìn */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #00796b; /* Xanh lá cây đậm, phù hợp với chủ đề bệnh viện */
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .welcome-message {
+            font-size: 22px;
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .links a {
+            text-decoration: none;
+            color: white;
+            background-color: #00796b; /* Đảm bảo tính nhất quán với header */
+            padding: 15px 30px;
+            margin: 12px 0;
+            font-weight: bold;
+            border-radius: 8px;
+            width: 250px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 18px;
+        }
+        .links a:hover {
+            background-color: #004d40; /* Màu khi hover */
+            transform: scale(1.05); /* Tăng kích thước khi hover */
+        }
+        .links a:active {
+            background-color: #004d40;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+        }
+        footer a {
+            color: #00796b;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        Chào Mừng <%= user.user_name %> - Trang Người Dùng Bệnh Viện
+    </header>
+
+    <div class="container">
+
+        <!-- Welcome message -->
+        <div class="welcome-message">
+            <p>Chào bạn, vui lòng chọn một trong các chức năng dưới đây để tiếp tục.</p>
+        </div>
+
+        <!-- Liên kết chức năng -->
+        <div class="links">
+            <a href="/logout">Đăng xuất</a>
+            <a href="/updateuser/<%= user.user_id %>">Cập nhật thông tin tài khoản</a>
+            <a href="/hospital_list">Danh sách bệnh viện</a>
+            <a href="/khoa_list">Danh sách các khoa</a> <!-- Liên kết danh sách khoa -->
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Bệnh viện - Tất cả quyền được bảo lưu. <a href="/privacy-policy">Chính sách bảo mật</a></p>
+    </footer>
+
+</body>
+</html>

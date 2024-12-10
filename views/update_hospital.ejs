@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THÊM MỚI BỆNH VIỆN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="float"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>SỬA  BỆNH VIỆN</h2>
+        <form id="hospitalForm" method="post" action="/hospital_update_final/<%= hospital.hospital_id %>">
+            <div class="form-group">
+                <label for="hospitalName">Hospital Name:</label>
+                <input type="text" id="hospitalName" name="hospitalName" value="<%= hospital.hospital_name %>"  required> 
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" value= "<%= hospital.address %>" required> >
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input type="number" step="0.0000000000000001" id="longitude" name="longitude" value= "<%= hospital.longitude %>" required>
+            </div>
+            <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input type="number" step="0.0000000000000001" id="latitude" name="latitude" value="<%= hospital.latitude %>" required>
+            </div>
+            <div class="form-group">
+                <label for="bedNumber">Number of Beds:</label>
+                <input type="number" id="bedNumber" name="bedNumber" value="<%= hospital.bed_number %>" required>
+            </div>
+            <div class="form-group">
+                <label for="workingHours">Viện Phí:</label>
+                <input type="number" id="workingHours" name="workingHours" value="<%= hospital.working_hours %>" required>
+            </div>
+            <div class="form-group">
+                <label for="status">Loại Hình</label>
+                <select id="status" name="status">
+                    <option value="true">Bệnh Viện Công</option>
+                    <option value="false">Bệnh Viện Tư</option>
+                </select>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    
+</body>
+</html>

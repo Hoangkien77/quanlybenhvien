@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bản đồ hiển thị vị trí bệnh viện gần nhất</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.1/dist/leaflet-routing-machine.js"></script>
+    <style>
+        #map { height: 1000px; }
+    </style>
+</head>
+<body>
+    <h1>Bản đồ hiển thị vị trí bệnh viện gần nhất</h1>
+
+    <div id="map"></div>
+
+    <script>
+        // Khởi tạo bản đồ
+        var map = L.map('map').setView([20.970063172230795, 105.77966324478128], 13); // Hà Nội (vị trí trung tâm)
+
+        // Thêm OpenStreetMap vào bản đồ
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // Dữ liệu bệnh viện từ EJS
+        const hospitals = <%- JSON.stringify(hospitals) %>; // Truyền dữ liệu vào đây
+
+        // Biến toàn cục để lưu trữ các lộ trình
+        let currentRoute = null;
+
+        // Thêm marker cho mỗi bệnh viện lấy từ API
+        hospitals.forEach(hospital => {
+            var marker = L.marker([hospital.latitude, hospital.longitude]).addTo(map)
+                .bindPopup(hospital.hospital_name)
+                .on('click', function() {
+                    // Khi nhấp vào marker, thực hiện chỉ đường tới bệnh viện
+                    routeToDestination([hospital.latitude, hospital.longitude]);
+                });
+        });
+
+        // Kiểm tra nếu trình duyệt hỗ trợ Geolocation
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var userLocation = [position.coords.latitude, position.coords.longitude];
+                
+                // Cập nhật bản đồ và vị trí
+                map.setView(userLocation, 13);
+                
+                var userMarker = L.marker(userLocation).addTo(map)
+                    .bindPopup("Vị trí hiện tại của bạn")
+                    .openPopup();
+
+                window.userLocation = userLocation;
+            }, function(error) {
+                alert("Không thể lấy vị trí của bạn: " + error.message);
+            });
+        } else {
+            alert("Trình duyệt của bạn không hỗ trợ Geolocation.");
+        }
+
+        // Hàm chỉ đường
+        function routeToDestination(destination) {
+            // Nếu có lộ trình cũ, xóa lộ trình đó đi
+            if (currentRoute) {
+                map.removeControl(currentRoute);
+            }
+
+            // Tạo lộ trình mới từ vị trí người dùng tới bệnh viện
+            currentRoute = L.Routing.control({
+                waypoints: [
+                    L.latLng(window.userLocation), // Vị trí người dùng
+                    L.latLng(destination) // Vị trí bệnh viện
+                ],
+                routeWhileDragging: true
+            }).addTo(map);
+        }
+    </script>
+
+</body>
+</html>

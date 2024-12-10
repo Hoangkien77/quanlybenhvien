@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khoa của Bệnh viện <%= hospital_name %></title>
+    <style>
+        /* Toàn bộ trang */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Container chính */
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* Tiêu đề chính */
+        h1 {
+            color: #4CAF50;
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        /* Tiêu đề danh sách */
+        h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* Danh sách khoa */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            background-color: #f9f9f9;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            font-size: 20px;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+        }
+
+        /* Hiệu ứng hover cho từng khoa */
+        ul li:hover {
+            transform: translateX(10px);
+            background-color: #e8f5e9;
+            cursor: pointer;
+        }
+
+        /* Hiển thị thông báo không có khoa */
+        .no-khoa {
+            color: #FF5722;
+            font-weight: 500;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Nút Quay lại */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive: Đảm bảo giao diện đẹp trên các thiết bị di động */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            ul li {
+                font-size: 18px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Bệnh viện: <%= hospital_name %></h1>
+        </header>
+        <h2>Danh sách các khoa:</h2>
+        <% if (khoa_names.length > 0) { %>
+            <ul>
+                <% khoa_names.forEach(function(khoa) { %>
+                    <li><%= khoa %></li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p class="no-khoa">Không có khoa nào liên kết với bệnh viện này.</p>
+        <% } %>
+        
+    </div>
+</body>
+
+</html>

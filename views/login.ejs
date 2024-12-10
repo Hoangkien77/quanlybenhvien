@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Nhập</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-form label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .login-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-form">
+    <h2>Đăng Nhập</h2>
+    <form action="/user_login" method="post">
+        <label for="username">Tài Khoản</label>
+        <input type="text" id="user_email" name="user_email" placeholder="email của bạn"required>
+
+        <label for="password">Mật Khẩu</label>
+        <input type="text" id="user_password" name="user_password" required>
+
+        <button type="submit">Đăng Nhập</button>
+    </form>
+
+    <% if (message) { %>
+        <div style="color: red; margin-top: 10px;">
+          <%= message %>
+        </div>
+      <% } %>
+</div>
+
+</body>
+</html>

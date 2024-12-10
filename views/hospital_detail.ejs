@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bệnh viện có khoa này</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .hospital-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .hospital-list li {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hospital-list h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #4CAF50;
+        }
+        .hospital-list p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .btn-directions {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn-directions:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Các Bệnh Viện có Khoa này</h2>
+
+        <ul class="hospital-list">
+            <% hospitals.forEach(function(hospital) { %>
+                <li>
+                    <div>
+                        <h3><%= hospital.hospital_name %></h3>
+                        <p><strong>Khoa liên quan:</strong> <%= hospital.khoa_names.join(", ") %></p>
+                    </div>
+                    <a class="btn-directions" href="/map_hospital/<%= hospital.hospital_id %>" target="_blank">Chỉ đường</a>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Bệnh viện - Tất cả quyền được bảo lưu</p>
+    </footer>
+
+</body>
+</html>
